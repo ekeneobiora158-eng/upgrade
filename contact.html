@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Contact Us | SMATG-ARENA - Get In Touch</title>
+    
+    <!-- Favicon for all devices -->
+    <link rel="icon" type="image/jpeg" sizes="32x32" href="images/small logo.jpg">
+    <link rel="icon" type="image/jpeg" sizes="16x16" href="images/small logo.jpg">
+    <link rel="shortcut icon" href="images/small logo.jpg">
+    
+    <!-- Apple Touch Icons for iOS -->
+    <link rel="apple-touch-icon" sizes="180x180" href="images/small logo.jpg">
+    <link rel="apple-touch-icon" href="images/small logo.jpg">
+    
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Browser Theme Colors -->
+    <meta name="theme-color" content="#6B4226">
+    <meta name="msapplication-TileColor" content="#6B4226">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Contact SMATG-ARENA for premium smart locks and security products. We're here to help!">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Unique Contact Page Styles */
+        :root {
+            --primary-color: #6B4226; /* Matching home page color */
+            --secondary-color: #EADDCA;
+            --accent-color: #D4B996; /* Matching home page accent color */
+            --dark-color: #3E2723;
+            --light-color: #FFF8DC;
+            --text-color: #333;
+            --background-color: #F5F5F5;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        /* Header Styling */
+        header {
+            background-color: var(--primary-color);
+            box-shadow: 0 4px 12px rgba(58, 37, 18, 0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-menu li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.6rem 1rem;
+            border-radius: 20px;
+            transition: all 0.4s ease;
+            display: inline-block;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .nav-menu li a::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s ease, height 0.4s ease;
+            z-index: -1;
+            opacity: 0;
+        }
+        
+        .nav-menu li a:hover::before,
+        .nav-menu li.active a::before {
+            width: 150%;
+            height: 200%;
+            opacity: 1;
+        }
+        
+        .nav-menu li a:hover,
+        .nav-menu li.active a {
+            color: var(--primary-color);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Contact Page Specific */
+        .contact-page-wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: calc(100vh - 100px);
+        }
+        
+        /* Contact Options - Updated to be closer to banner */
+        .contact-options {
+            padding: 10px 0 40px;
+            background: transparent;
+            margin-top: -20px;
+        }
+        
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.2;
+        }
+        
+        .contact-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .contact-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        /* Contact Options */
+        .contact-options {
+            background: var(--light-color);
+            padding: 80px 0;
+        }
+        
+        .options-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            padding: 0 20px;
+        }
+        
+        .contact-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            position: relative;
+            transform: translateY(0);
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary-color);
+        }
+        
+        .contact-card-content {
+            padding: 30px;
+        }
+        
+        .contact-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-card:hover .contact-icon {
+            transform: scale(1.1);
+            background: var(--accent-color);
+        }
+        
+        .contact-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+            color: var(--primary-color);
+        }
+        
+        .contact-card p {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #666;
+        }
+        
+        .contact-action {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 25px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-btn:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(184, 115, 51, 0.3);
+        }
+        
+        .contact-btn i {
+            margin-right: 8px;
+        }
+        
+        /* Office Address Section */
+        .office-address-section {
+            padding: 40px 0;
+            background: var(--background-color);
+        }
+        
+        .office-address-container {
+            max-width: 650px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .office-address-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid var(--primary-color);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .office-address-card:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            transform: translateX(3px);
+        }
+        
+        .address-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+        
+        .address-icon-wrapper {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .address-icon-wrapper i {
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .address-header h3 {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin: 0;
+            font-weight: 600;
+        }
+        
+        .address-content {
+            position: relative;
+        }
+        
+        .address-text {
+            font-size: 1rem;
+            color: var(--text-color);
+            line-height: 1.7;
+            font-weight: 400;
+            margin-bottom: 15px;
+        }
+        
+        .address-text i {
+            color: var(--primary-color);
+            margin-right: 8px;
+        }
+        
+        .address-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .address-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 18px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .address-btn:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+        }
+        
+        .address-btn i {
+            margin-right: 6px;
+            font-size: 0.95rem;
+        }
+        
+        /* Contact Form Section */
+        .contact-form-section {
+            padding: 20px 0 70px;
+            background: var(--background-color);
+            position: relative;
+        }
+        
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden; /* Ensure nothing breaks out of container on small screens */
+            box-sizing: border-box; /* Include padding in width calculations */
+        }
+        
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--primary-color);
+            border-radius: 15px 0 0 15px;
+        }
+        
+        .form-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--primary-color);
+            border-radius: 0 15px 15px 0;
+        }
+        
+        .form-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .form-header h2 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .form-header p {
+            color: #666;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e5e5e5;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(125, 68, 39, 0.1);
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 15px 30px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(125, 68, 39, 0.2);
+        }
+        
+        .submit-button:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(125, 68, 39, 0.3);
+        }
+        
+        .submit-button i {
+            margin-left: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-button:hover i {
+            transform: translateX(5px);
+        }
+        
+        .form-message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .form-message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+        
+        .form-message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+        
+        /* Map Section */
+        .map-section {
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .map-container {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .map-overlay {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            z-index: 10;
+        }
+        
+        .map-overlay h3 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .map-overlay p {
+            margin-bottom: 15px;
+        }
+        
+        .address-item {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        
+        .address-icon {
+            color: var(--primary-color);
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+        
+        /* WhatsApp Button */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            align-items: center;
+            background-color: #25D366;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .whatsapp-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .whatsapp-icon i {
+            color: #25D366;
+            font-size: 1.5rem;
+        }
+        
+        /* Footer */
+        .contact-footer {
+            background: var(--dark-color);
+            color: var(--light-color);
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .footer-logo img {
+            width: auto;
+            height: 100px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 0;
+        }
+        
+        .footer-logo h3 {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            color: var(--light-color);
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+        
+        .social-icon.facebook {
+            background-color: #3b5998;
+        }
+        
+        .social-icon.instagram {
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .contact-hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .map-overlay {
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: 20px;
+            }
+            
+            .form-container {
+                max-width: 90%;
+            }
+            
+            .office-address-card {
+                padding: 25px 20px;
+            }
+            
+            .address-header h3 {
+                font-size: 1.3rem;
+            }
+
+        }
+        
+        @media (max-width: 768px) {
+            .options-container {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                gap: 20px;
+            }
+            
+            .contact-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .contact-hero p {
+                font-size: 1rem;
+            }
+            
+            .form-container {
+                padding: 30px 20px;
+                max-width: 95%;
+            }
+            
+            .office-address-section {
+                padding: 30px 0;
+            }
+            
+            .office-address-card {
+                padding: 25px 20px;
+            }
+            
+            .address-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .address-header h3 {
+                font-size: 1.2rem;
+            }
+            
+            .address-actions {
+                flex-direction: column;
+            }
+            
+            .address-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            
+            .contact-options {
+                padding-bottom: 20px;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            
+            .form-group {
+                margin-bottom: 20px;
+            }
+            
+            .submit-button {
+                width: 100%;
+                justify-content: center;
+                padding: 12px 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .contact-hero {
+                padding: 60px 0;
+            }
+            
+            .contact-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .form-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .office-address-section {
+                padding: 25px 0;
+            }
+            
+            .office-address-card {
+                padding: 20px 15px;
+            }
+            
+            .address-icon-wrapper {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .address-icon-wrapper i {
+                font-size: 1.3rem;
+            }
+            
+            .address-header h3 {
+                font-size: 1.1rem;
+            }
+            
+            .address-text {
+                font-size: 0.95rem;
+            }
+            
+            .address-btn {
+                padding: 7px 15px;
+                font-size: 0.85rem;
+            }
+            
+            .whatsapp-button {
+                bottom: 20px;
+                right: 20px;
+                padding: 8px 15px;
+            }
+            
+            .whatsapp-icon {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .form-container::before,
+            .form-container::after {
+                width: 3px;
+            }
+            
+            .form-container {
+                padding: 25px 15px;
+                margin: 0 10px;
+                max-width: calc(100% - 20px);
+            }
+            
+            .contact-card-content {
+                padding: 20px 15px;
+            }
+            
+            .submit-button {
+                font-size: 1rem;
+                padding: 10px 15px;
+            }
+            
+
+            
+            .form-message {
+                padding: 12px;
+                font-size: 0.9rem;
+            }
+            
+            .form-group input, 
+            .form-group textarea {
+                padding: 12px;
+                font-size: 0.95rem;
+            }
+            
+            .form-group label {
+                margin-bottom: 5px;
+                font-size: 0.95rem;
+            }
+        }
+        
+        /* Extra small devices */
+        @media (max-width: 375px) {
+            .office-address-card {
+                padding: 18px 12px;
+            }
+            
+            .address-header h3 {
+                font-size: 1rem;
+            }
+            
+            .address-text {
+                font-size: 0.9rem;
+            }
+            
+            .address-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+            
+            .contact-card-content {
+                padding: 15px 10px;
+            }
+            
+            .form-header h2 {
+                font-size: 1.5rem;
+            }
+            
+            .form-header p {
+                font-size: 0.9rem;
+            }
+            
+            .form-container {
+                padding: 20px 12px;
+            }
+            
+            .contact-action {
+                width: 100%;
+            }
+            
+            .contact-btn {
+                width: 100%;
+                justify-content: center;
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .submit-button {
+                padding: 10px;
+                font-size: 0.95rem;
+            }
+        }
+        
+        /* Contact Page Spacing */
+        
+        /* Responsive Footer Styles */
+        @media (max-width: 768px) {
+            .footer-logo img {
+                height: 80px;
+            }
+            
+            .social-icons {
+                gap: 20px;
+            }
+            
+            .social-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .footer-logo img {
+                height: 70px;
+            }
+            
+            .footer-logo h3 {
+                font-size: 1.3rem;
+            }
+            
+            .social-icons {
+                gap: 15px;
+            }
+            
+            .social-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .footer-bottom {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- WhatsApp Chat Button -->
+    <a href="https://wa.me/+2348035817555" class="whatsapp-button" target="_blank" aria-label="Chat on WhatsApp">
+        <div class="whatsapp-icon">
+            <i class="fab fa-whatsapp"></i>
+        </div>
+        <span class="whatsapp-text">Chat with Us</span>
+    </a>
+    
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="images/a4.jpg" alt="SMATG-ARENA Logo">
+                </div>
+                <div class="tagline">Elevating Your Experience</div>
+            </div>
+            <nav>
+                <div class="menu-toggle">
+                    <div class="hamburger-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li class="active"><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="contact-page-wrapper">
+        <!-- Contact Options -->
+        <section class="contact-options">
+            <div class="options-container">
+                <div class="contact-card">
+                    <div class="contact-card-content">
+                        <div class="contact-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3>Chat With Us</h3>
+                        <p>Get instant answers to your questions through our WhatsApp chat service. We're available 24/7 to assist you.</p>
+                        <div class="contact-action">
+                            <a href="https://wa.me/+2348035817555" class="contact-btn" target="_blank">
+                                <i class="fab fa-whatsapp"></i> Start Chat
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-card-content">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <h3>Call Us</h3>
+                        <p>Prefer to speak with a real person? Our customer service team is just a phone call away.</p>
+                        <div class="contact-action">
+                            <a href="tel:+2348035817555" class="contact-btn">
+                                <i class="fas fa-phone"></i> +234 803 581 7555
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Office Address Section -->
+        <section class="office-address-section">
+            <div class="office-address-container">
+                <div class="office-address-card">
+                    <div class="address-header">
+                        <div class="address-icon-wrapper">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>Our Office Location</h3>
+                    </div>
+                    <div class="address-content">
+                        <div class="address-text">
+                            <i class="fas fa-building"></i> 2/4 Bomadek Street, by Balogun B/Stop, Ago Place Way, Okota, Lagos, Nigeria
+                        </div>
+                        <div class="address-actions">
+                            <a href="https://www.google.com/maps/search/?api=1&query=2%2F4+Bomadek+Street+Ago+Place+Way+Okota+Lagos+Nigeria" target="_blank" class="address-btn">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                            <a href="tel:+2348035817555" class="address-btn">
+                                <i class="fas fa-phone"></i> Call Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Form -->
+        <section class="contact-form-section">
+            <div class="container">
+                <div class="form-container">
+                    <div class="form-header">
+                        <h2>Send Us a Message</h2>
+                        <p>Fill out the form below and send your message directly via WhatsApp.</p>
+                    </div>
+                    
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" placeholder="What is this regarding?">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Your message here..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-button">
+                            Send via WhatsApp <i class="fab fa-whatsapp"></i>
+                        </button>
+                        
+                        <div id="formMessage" class="form-message"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="contact-footer">
+            <div class="container">
+                <div class="footer-logo">
+                    <img src="images/a4.jpg" alt="SMATG-ARENA Logo">
+                    <h3>SMATG-ARENA</h3>
+                </div>
+                
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/share/1EtHweddoD/" class="social-icon facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/smatgtech" class="social-icon instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>&copy; 2025 SMATG-ARENA. All Rights Reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Contact Form Handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            const formMessage = document.getElementById('formMessage');
+            
+            // Basic validation
+            if (!name || !phone || !message) {
+                formMessage.className = 'form-message error';
+                formMessage.innerHTML = 'Please fill in all required fields.';
+                return;
+            }
+            
+            // Format the message for WhatsApp
+            const whatsappMessage = `*New Contact Form Message*%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Subject:* ${subject}%0A*Message:* ${message}`;
+            
+            // WhatsApp number to send to
+            const whatsappNumber = '2348035817555'; // without the + sign
+            
+            // Create WhatsApp URL
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${whatsappMessage}`;
+            
+            // Success message
+            formMessage.className = 'form-message success';
+            formMessage.innerHTML = 'Redirecting to WhatsApp to send your message...';
+            
+            // Open WhatsApp in a new tab/window
+            setTimeout(() => {
+                window.open(whatsappUrl, '_blank');
+                document.getElementById('contactForm').reset();
+                
+                // Update message after redirection
+                formMessage.innerHTML = 'Thank you! Your message has been prepared for sending via WhatsApp.';
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    formMessage.innerHTML = '';
+                    formMessage.className = 'form-message';
+                }, 5000);
+            }, 1000);
+        });
+        
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+            document.querySelector('.hamburger-icon').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

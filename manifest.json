@@ -1,0 +1,33 @@
+{
+  "name": "SMATG-ARENA - Premium Smart Locks & Security",
+  "short_name": "SMATG-ARENA",
+  "description": "Your trusted source for premium smart locks, security cameras, and advanced security products.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#6B4226",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "images/small logo.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/small logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/a4.jpg",
+      "sizes": "256x256",
+      "type": "image/jpeg"
+    }
+  ],
+  "categories": ["shopping", "business", "security"],
+  "scope": "/",
+  "lang": "en",
+  "dir": "ltr"
+}

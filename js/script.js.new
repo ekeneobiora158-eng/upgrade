@@ -1,0 +1,462 @@
+// Wait for the DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM fully loaded');
+    
+    // Get the menu toggle and navigation menu elements
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    const body = document.body;
+    
+    console.log('Menu toggle element found:', menuToggle !== null);
+    console.log('Nav menu element found:', navMenu !== null);
+    
+    // Toggle the navigation menu when the menu icon is clicked
+    menuToggle.addEventListener('click', function(e) {
+        console.log('Menu toggle clicked');
+        e.stopPropagation();
+        navMenu.classList.toggle('show');
+        menuToggle.classList.toggle('open');
+        body.classList.toggle('menu-open');
+    });
+    
+    // Close the menu when a menu item is clicked
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (navMenu.classList.contains('show')) {
+                navMenu.classList.remove('show');
+                menuToggle.classList.remove('open');
+                body.classList.remove('menu-open');
+            }
+        });
+    });
+    
+    // Close the menu when clicking outside of it
+    document.addEventListener('click', function(event) {
+        const isClickInsideNav = navMenu.contains(event.target);
+        const isClickOnToggle = menuToggle.contains(event.target);
+        
+        if (!isClickInsideNav && !isClickOnToggle && navMenu.classList.contains('show')) {
+            navMenu.classList.remove('show');
+            menuToggle.classList.remove('open');
+            body.classList.remove('menu-open');
+        }
+    });
+    
+    // Add animation delay for nav items on page load
+    setTimeout(function() {
+        const headerElement = document.querySelector('header');
+        headerElement.classList.add('loaded');
+    }, 100);
+    
+    // Function to check window width and adjust menu accordingly
+    function checkWindowSize() {
+        if (window.innerWidth > 768) {
+            if (navMenu.classList.contains('show')) {
+                navMenu.classList.remove('show');
+                menuToggle.classList.remove('open');
+                body.classList.remove('menu-open');
+            }
+        }
+    }
+    
+    // Call on resize
+    window.addEventListener('resize', checkWindowSize);
+    
+    // Handle Buy Now button clicks
+    const buyButtons = document.querySelectorAll('.buy-now-btn');
+    const buyNowModal = document.getElementById('buyNowModal');
+    const closeBuyNowModal = document.querySelector('#buyNowModal .close-modal');
+    let currentProduct = '';
+    
+    console.log('Buy Now buttons found:', buyButtons.length);
+    console.log('Buy Now modal found:', buyNowModal !== null);
+    
+    buyButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            console.log('Buy Now button clicked');
+            e.preventDefault();
+            const productName = this.closest('.product-item').querySelector('.product-name').textContent;
+            currentProduct = productName;
+            
+            // Add a visual feedback for the button click
+            this.classList.add('clicked');
+            
+            // Show modal
+            buyNowModal.style.display = 'block';
+            
+            // Use setTimeout to ensure CSS transition works properly
+            setTimeout(() => {
+                buyNowModal.classList.add('show');
+            }, 10);
+            
+            // Disable button temporarily
+            this.disabled = true;
+            
+            // Create and display a floating animation effect
+            const floatingIcon = document.createElement('div');
+            floatingIcon.innerHTML = '🛒';
+            floatingIcon.style.position = 'absolute';
+            floatingIcon.style.fontSize = '24px';
+            floatingIcon.style.left = '50%';
+            floatingIcon.style.top = '50%';
+            floatingIcon.style.transform = 'translate(-50%, -50%)';
+            floatingIcon.style.zIndex = '100';
+            floatingIcon.style.opacity = '1';
+            floatingIcon.style.transition = 'all 1s ease-out';
+            
+            this.parentNode.appendChild(floatingIcon);
+            
+            setTimeout(() => {
+                floatingIcon.style.top = '-30px';
+                floatingIcon.style.opacity = '0';
+            }, 10);
+            
+            // Reset after animation completes
+            setTimeout(() => {
+                this.classList.remove('clicked');
+                this.disabled = false;
+                if (floatingIcon && floatingIcon.parentNode) {
+                    floatingIcon.parentNode.removeChild(floatingIcon);
+                }
+            }, 1000);
+        });
+        
+        // Add ripple effect on button click
+        button.addEventListener('mousedown', function(e) {
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = `${size}px`;
+            ripple.style.left = `${x}px`;
+            ripple.style.top = `${y}px`;
+            ripple.className = 'ripple';
+            
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    });
+    
+    // Modal close functionality for Buy Now modal
+    if (closeBuyNowModal) {
+        closeBuyNowModal.addEventListener('click', function() {
+            console.log('Close Buy Now modal clicked');
+            buyNowModal.classList.remove('show');
+            setTimeout(() => {
+                buyNowModal.style.display = 'none';
+            }, 300);
+        });
+    }
+    
+    // Close Buy Now modal when clicking outside of it
+    window.addEventListener('click', function(event) {
+        if (event.target === buyNowModal) {
+            buyNowModal.classList.remove('show');
+            setTimeout(() => {
+                buyNowModal.style.display = 'none';
+            }, 300);
+        }
+    });
+    
+    // Add animation to WhatsApp button
+    const whatsappBtn = document.querySelector('.whatsapp-btn');
+    if (whatsappBtn) {
+        whatsappBtn.addEventListener('mouseenter', function() {
+            this.style.animation = 'pulse 1s infinite';
+        });
+        
+        whatsappBtn.addEventListener('mouseleave', function() {
+            this.style.animation = '';
+        });
+    }
+    
+    // Handle See Video button clicks
+    const videoButtons = document.querySelectorAll('.see-video-btn');
+    const videoModal = document.getElementById('videoModal');
+    const closeVideoModal = document.querySelector('#videoModal .close-modal');
+    const productVideo = document.getElementById('productVideo');
+    const videoModalTitle = document.getElementById('videoModalTitle');
+    const videoProductName = document.getElementById('videoProductName');
+    const videoProductDescription = document.getElementById('videoProductDescription');
+    const galleryImages = document.getElementById('galleryImages');
+    
+    console.log('See Video buttons found:', videoButtons.length);
+    console.log('Video modal found:', videoModal !== null);
+    console.log('Product video element found:', productVideo !== null);
+    console.log('Gallery images container found:', galleryImages !== null);
+    
+    // Sample product data (in a real site, this would come from a database)
+    const productData = {
+        'Premium Product': {
+            videoSrc: 'videos/product1.mp4',
+            images: ['images/1st.jpg', 'images/2nd.jpg', 'images/3rd.jpg'],
+            description: 'Our Premium Product features exceptional craftsmanship with premium materials. Each item is meticulously crafted to ensure the highest quality and durability. Perfect for collectors and those who appreciate fine craftsmanship.'
+        },
+        'Luxury Item': {
+            videoSrc: 'videos/product2.mp4',
+            images: ['images/2nd.jpg', 'images/3rd.jpg', 'images/4th.jpg'],
+            description: 'The Luxury Item combines elegant design with premium materials, making it a perfect addition to any collection. Each piece is carefully crafted to ensure the highest quality and attention to detail.'
+        },
+        'Signature Collection': {
+            videoSrc: 'videos/product3.mp4',
+            images: ['images/3rd.jpg', 'images/4th.jpg', 'images/5th.jpg'],
+            description: "Our Signature Collection represents the pinnacle of our craftsmanship. These exclusive pieces feature unique designs and premium materials that cannot be found anywhere else."
+        },
+        'Premium Plus': {
+            videoSrc: 'videos/product4.mp4',
+            images: ['images/4th.jpg', 'images/5th.jpg', 'images/6th.jpg'],
+            description: 'Premium Plus offers enhanced features and superior quality. These items are designed for those who demand only the best and appreciate fine attention to detail.'
+        },
+        'Exclusive Edition': {
+            videoSrc: 'videos/product5.mp4',
+            images: ['images/5th.jpg', 'images/6th.jpg', 'images/7th.jpg'],
+            description: "The Exclusive Edition is our limited availability premium line. Each piece is numbered and comes with a certificate of authenticity, making it a true collector's item."
+        },
+        'Deluxe Model': {
+            videoSrc: 'videos/product6.mp4',
+            images: ['images/6th.jpg', 'images/7th.jpg', 'images/8th.jpg'],
+            description: 'Our Deluxe Model combines luxury with functionality. Premium quality materials with deluxe finishing touches make this a standout product in our collection.'
+        },
+        'Elite Series': {
+            videoSrc: 'videos/product7.mp4',
+            images: ['images/7th.jpg', 'images/8th.jpg', 'images/9th.jpg'],
+            description: 'The Elite Series represents the pinnacle of our product line. The elite choice for discerning customers who demand perfection.'
+        },
+        'Professional Grade': {
+            videoSrc: 'videos/product8.mp4',
+            images: ['images/8th.jpg', 'images/9th.jpg', 'images/10th.jpg'],
+            description: 'Built for professionals with exacting standards, our Professional Grade products offer reliability and performance when it matters most.'
+        },
+        "Collector's Item": {
+            videoSrc: 'videos/product9.mp4',
+            images: ['images/9th.jpg', 'images/10th.jpg', 'images/11th.jpg'],
+            description: 'A must-have for serious collectors, this limited edition piece features unique details and exceptional craftsmanship.'
+        },
+        'Artisan Series': {
+            videoSrc: 'videos/product10.mp4',
+            images: ['images/10th.jpg', 'images/11th.jpg', 'images/12th.jpg'],
+            description: 'Handcrafted by skilled artisans, each piece in our Artisan Series is unique with its own character and exceptional quality.'
+        },
+        'Signature Pro': {
+            videoSrc: 'videos/product11.mp4',
+            images: ['images/11th.jpg', 'images/12th.jpg', 'images/13th.jpg'],
+            description: 'The Signature Pro combines our signature quality with professional-grade features for those who need reliable performance.'
+        },
+        'Heritage Collection': {
+            videoSrc: 'videos/product12.mp4',
+            images: ['images/12th.jpg', 'images/13th.jpg', 'images/14th.jpg'],
+            description: 'Our Heritage Collection honors traditional craftsmanship while incorporating modern features for contemporary use.'
+        },
+        'Ultimate Series': {
+            videoSrc: 'videos/product13.mp4',
+            images: ['images/13th.jpg', 'images/14th.jpg', 'images/15th.jpg'],
+            description: 'The Ultimate Series represents the ultimate in premium performance and quality, with no compromises made in any aspect of design or manufacturing.'
+        },
+        'Executive Model': {
+            videoSrc: 'videos/product14.mp4',
+            images: ['images/14th.jpg', 'images/15th.jpg', 'images/16th.jpg'],
+            description: 'Designed for executives with discerning taste, our Executive Model combines elegant styling with premium functionality.'
+        },
+        'Master Craft': {
+            videoSrc: 'videos/product15.mp4',
+            images: ['images/15th.jpg', 'images/16th.jpg', 'images/17th.jpg'],
+            description: 'Masterfully crafted with exceptional attention to detail, our Master Craft product line represents the pinnacle of artisanal excellence.'
+        },
+        'Platinum Edition': {
+            videoSrc: 'videos/product16.mp4',
+            images: ['images/16th.jpg', 'images/17th.jpg', 'images/18th.jpg'],
+            description: 'Our platinum-tier product with superior features and unmatched quality. The Platinum Edition is for those who accept only the very best.'
+        },
+        'Premium Select': {
+            videoSrc: 'videos/product17.mp4',
+            images: ['images/17th.jpg', 'images/18th.jpg', 'images/19th.jpg'],
+            description: 'Carefully selected premium materials and exceptional craftsmanship define our Premium Select line of products.'
+        },
+        'Designer Series': {
+            videoSrc: 'videos/product18.mp4',
+            images: ['images/18th.jpg', 'images/19th.jpg', 'images/20th.jpg'],
+            description: 'Designed by award-winning artisans, our Designer Series offers unique appeal with distinctive aesthetics and superior quality.'
+        },
+        'Prestige Model': {
+            videoSrc: 'videos/product19.mp4',
+            images: ['images/19th.jpg', 'images/20th.jpg', 'images/1st.jpg'],
+            description: 'The prestige choice with exceptional quality standards. Our Prestige Model is designed for those who appreciate refined elegance.'
+        },
+        'Signature Elite': {
+            videoSrc: 'videos/product20.mp4',
+            images: ['images/20th.jpg', 'images/1st.jpg', 'images/2nd.jpg'],
+            description: 'Elite features with our signature quality guarantee make the Signature Elite our most distinguished product offering.'
+        }
+    };
+    
+    videoButtons.forEach(button => {
+        console.log('Adding click event to video button');
+        button.addEventListener('click', function(e) {
+            console.log('See Video button clicked');
+            e.stopPropagation(); // Prevent event bubbling
+            const productItem = this.closest('.product-item');
+            const productName = productItem.querySelector('.product-name').textContent;
+            const productDesc = productItem.querySelector('.product-description').textContent;
+            const productImageSrc = productItem.querySelector('.product-image img').src;
+            
+            console.log('Product details:', productName, productDesc, productImageSrc);
+            
+            // Add a visual feedback for the button click
+            this.classList.add('clicked');
+            
+            // Set video source - for demo purposes, we'll use a placeholder or the actual video if available
+            if (productData[productName] && productData[productName].videoSrc) {
+                // In a real site, you would use actual video files
+                // For this demo, we'll show a placeholder message when video isn't available
+                try {
+                    productVideo.src = productData[productName].videoSrc;
+                    productVideo.style.display = 'block';
+                } catch (err) {
+                    console.log("Video not available: ", err);
+                    productVideo.style.display = 'none';
+                }
+            } else {
+                productVideo.style.display = 'none';
+            }
+            
+            // Populate gallery images
+            galleryImages.innerHTML = '';
+            
+            // Use product data images if available, otherwise use the product's main image
+            const imagesToUse = productData[productName] ? 
+                productData[productName].images : 
+                [productImageSrc, productImageSrc, productImageSrc];
+            
+            imagesToUse.forEach((imgSrc, index) => {
+                const imgDiv = document.createElement('div');
+                imgDiv.className = 'gallery-image-wrapper';
+                
+                const img = document.createElement('img');
+                img.src = imgSrc;
+                img.alt = `${productName} Image ${index + 1}`;
+                img.className = 'gallery-image';
+                
+                imgDiv.appendChild(img);
+                galleryImages.appendChild(imgDiv);
+                
+                // Make gallery images clickable to show them full screen
+                img.addEventListener('click', function() {
+                    // Simple full-screen view for the image
+                    const fullImg = document.createElement('div');
+                    fullImg.className = 'fullscreen-image';
+                    fullImg.style.position = 'fixed';
+                    fullImg.style.top = '0';
+                    fullImg.style.left = '0';
+                    fullImg.style.width = '100%';
+                    fullImg.style.height = '100%';
+                    fullImg.style.backgroundColor = 'rgba(0,0,0,0.9)';
+                    fullImg.style.zIndex = '10000';
+                    fullImg.style.display = 'flex';
+                    fullImg.style.alignItems = 'center';
+                    fullImg.style.justifyContent = 'center';
+                    
+                    const imgElement = document.createElement('img');
+                    imgElement.src = this.src;
+                    imgElement.style.maxWidth = '90%';
+                    imgElement.style.maxHeight = '90%';
+                    imgElement.style.objectFit = 'contain';
+                    
+                    fullImg.appendChild(imgElement);
+                    document.body.appendChild(fullImg);
+                    
+                    fullImg.addEventListener('click', function() {
+                        document.body.removeChild(fullImg);
+                    });
+                });
+            });
+            
+            // Show video modal
+            videoModal.style.display = 'block';
+            
+            // Use setTimeout to ensure CSS transition works properly
+            setTimeout(() => {
+                videoModal.classList.add('show');
+            }, 10);
+            
+            // Reset button after click
+            setTimeout(() => {
+                this.classList.remove('clicked');
+            }, 500);
+        });
+    });
+    
+    // Handle Buy Now button in the video modal
+    const videoBuyNowBtn = document.querySelector('.video-buy-now-btn');
+    if (videoBuyNowBtn) {
+        videoBuyNowBtn.addEventListener('click', function() {
+            console.log('Video modal Buy Now button clicked');
+            
+            // Close the video modal
+            videoModal.classList.remove('show');
+            setTimeout(() => {
+                videoModal.style.display = 'none';
+                // Stop the video when modal is closed
+                if (productVideo) {
+                    productVideo.pause();
+                    productVideo.currentTime = 0;
+                }
+                
+                // Show the Buy Now modal
+                buyNowModal.style.display = 'block';
+                setTimeout(() => {
+                    buyNowModal.classList.add('show');
+                }, 10);
+                
+            }, 300);
+            
+            // Add a visual feedback for the button click
+            this.classList.add('clicked');
+            
+            // Reset button after click
+            setTimeout(() => {
+                this.classList.remove('clicked');
+            }, 500);
+        });
+    }
+    
+    // Close video modal when clicking the close button
+    if (closeVideoModal) {
+        console.log('Close video modal button found');
+        closeVideoModal.addEventListener('click', function() {
+            console.log('Close video modal clicked');
+            videoModal.classList.remove('show');
+            setTimeout(() => {
+                videoModal.style.display = 'none';
+                // Stop the video when modal is closed
+                if (productVideo) {
+                    productVideo.pause();
+                    productVideo.currentTime = 0;
+                }
+            }, 300);
+        });
+    } else {
+        console.log('Warning: Close video modal button not found');
+    }
+    
+    // Close video modal when clicking outside of it
+    window.addEventListener('click', function(event) {
+        if (event.target === videoModal) {
+            videoModal.classList.remove('show');
+            setTimeout(() => {
+                videoModal.style.display = 'none';
+                // Stop the video when modal is closed
+                if (productVideo) {
+                    productVideo.pause();
+                    productVideo.currentTime = 0;
+                }
+            }, 300);
+        }
+    });
+});

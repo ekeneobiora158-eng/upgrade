@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Home | My Website</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="images/a4.jpg" alt="My Brand Logo">
+                </div>
+                <div class="tagline"></div>
+            </div>
+            <nav>
+                <div class="menu-toggle">
+                    <div class="hamburger-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <ul class="nav-menu">
+                    <li class="active"><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="product-showcase">
+            <div class="container">
+                <div class="product-title-container">
+                    <h1 class="product-title"><span>Our Product</span></h1>
+                </div>
+                
+                <div class="product-grid">
+                    <!-- Product Item 1 -->
+                    <div class="product-item">
+                        <div class="product-image">
+                            <img src="images/a4.jpg" alt="Product 1">
+                            <button class="see-video-btn"><i class="fas fa-play-circle"></i> See Video</button>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">Premium Product</h3>
+                            <p class="product-description">High-quality handcrafted item for your collection.</p>
+                            <button class="buy-now-btn">🛒 Buy Now</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product Item 2 -->
+                    <div class="product-item">
+                        <div class="product-image">
+                            <img src="images/download (33).jpg" alt="Product 2">
+                            <button class="see-video-btn"><i class="fas fa-play-circle"></i> See Video</button>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">Luxury Item</h3>
+                            <p class="product-description">Exclusive design with premium materials.</p>
+                            <button class="buy-now-btn">🛒 Buy Now</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product Item 3 -->
+                    <div class="product-item">
+                        <div class="product-image">
+                            <img src="images/logo.jpg" alt="Product 3">
+                            <button class="see-video-btn"><i class="fas fa-play-circle"></i> See Video</button>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">Signature Collection</h3>
+                            <p class="product-description">Our flagship product with unique features.</p>
+                            <button class="buy-now-btn">🛒 Buy Now</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product Item 4 -->
+                    <div class="product-item">
+                        <div class="product-image">
+                            <img src="images/a4.jpg" alt="Product 4">
+                            <button class="see-video-btn"><i class="fas fa-play-circle"></i> See Video</button>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">Premium Plus</h3>
+                            <p class="product-description">Enhanced version with additional features.</p>
+                            <button class="buy-now-btn">🛒 Buy Now</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product Item 5 -->
+                    <div class="product-item">
+                        <div class="product-image">
+                            <img src="images/download (33).jpg" alt="Product 5">
+                            <button class="see-video-btn"><i class="fas fa-play-circle"></i> See Video</button>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">Exclusive Edition</h3>
+                            <p class="product-description">Limited availability, premium craftsmanship.</p>
+                            <button class="buy-now-btn">🛒 Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 SMATG-ARENA. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modal Popup for Buy Now -->
+    <div id="buyNowModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <i class="fas fa-shopping-bag"></i>
+                <h3>Product Inquiry</h3>
+            </div>
+            <div class="modal-body">
+                <p>Thank you for your interest in our premium products.</p>
+                <p>For personalized pricing and exclusive offers, please connect with our product specialists.</p>
+                <div class="contact-option">
+                    <a href="https://wa.me/2348035817555" class="whatsapp-btn" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Chat with SMAT G Arena
+                    </a>
+                </div>
+                <p class="small-text">Our team is ready to assist you with any questions and provide detailed product information.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
